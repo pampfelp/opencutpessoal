@@ -11,8 +11,8 @@ export const metadata: Metadata = {
 	title: "OpenCut Pessoal",
 	description: "Editor de vídeo pessoal",
 	robots: { index: false, follow: false },
-	manifest: "/opencut/manifest.json",
-	icons: { icon: "/opencut/favicon.ico" },
+	manifest: "/opencutpessoal/manifest.json",
+	icons: { icon: "/opencutpessoal/favicon.ico" },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

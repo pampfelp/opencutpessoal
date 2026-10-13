@@ -1,6 +1,6 @@
 # OpenCut Pessoal
 
-Este repositório é uma cópia histórica. O código-fonte ativo e o site publicado estão juntos em [pampfelp/pampfelp.github.io](https://github.com/pampfelp/pampfelp.github.io), nas pastas `source/` e `opencut/`. O endereço único para abrir o editor é [pampfelp.github.io](https://pampfelp.github.io/).
+Este é o repositório principal do OpenCut Pessoal. O código-fonte fica na branch `main`, e a branch `gh-pages` publica o aplicativo em [pampfelp.github.io/opencutpessoal/](https://pampfelp.github.io/opencutpessoal/).
 
 Editor pessoal baseado no código do OpenCut Classic, sob a licença MIT mantida em `LICENSE`. O projeto abre em `/projects`; cada projeto é editado no navegador e permanece em uma cópia local (IndexedDB para a linha do tempo e OPFS para a mídia). O padrão inicial é 1080 × 1920 e pode ser alterado nas configurações do projeto.
 
@@ -15,11 +15,11 @@ Editor pessoal baseado no código do OpenCut Classic, sob a licença MIT mantida
 
 ## Preparar o Google Drive
 
-1. As capturas de 13/10/2026 mostram o projeto Google Cloud **SolarGreen** e um cliente web chamado **Apps Script**. Crie um projeto separado chamado **OpenCut Pessoal** para não alterar esse cliente existente.
-2. No novo projeto, ative a [API do Google Drive](https://console.cloud.google.com/apis/library/drive.googleapis.com).
+1. Use o projeto Google Cloud **OpenCut Pessoal** criado para este editor. O cliente OAuth do projeto **SolarGreen** não pertence a ele.
+2. Ative a [API do Google Drive](https://console.cloud.google.com/apis/library/drive.googleapis.com) nesse projeto.
 3. Em [Google Auth Platform — Branding e Público-alvo](https://console.cloud.google.com/auth/overview), configure o nome **OpenCut Pessoal** e seus próprios endereços de suporte e contato. Escolha **Externo** para conta Google pessoal. Em **Acesso a dados**, adicione o escopo `https://www.googleapis.com/auth/drive.file`.
 4. Em [Clientes](https://console.cloud.google.com/auth/clients), crie um cliente OAuth **Aplicativo da Web** chamado **OpenCut Pessoal**. Em **Origens JavaScript autorizadas**, adicione `http://localhost`, `http://localhost:3000` e `https://pampfelp.github.io`. O modelo de token usado pelo editor não precisa de URI de redirecionamento.
-5. Copie somente o **ID do cliente** e crie `apps/web/.env.local` com `NEXT_PUBLIC_GOOGLE_DRIVE_CLIENT_ID=<seu ID de cliente>`. Não coloque segredo OAuth no código ou em variável `NEXT_PUBLIC_`.
+5. Copie somente o **ID do cliente** para `NEXT_PUBLIC_GOOGLE_DRIVE_CLIENT_ID` em `apps/web/.env.local` (uso local) e `apps/pages/.env.local` (build público). Para o build público, use também `NEXT_PUBLIC_SITE_URL=https://pampfelp.github.io/opencutpessoal` e `NEXT_PUBLIC_BASE_PATH=/opencutpessoal`. Não coloque segredo OAuth no código ou em variável `NEXT_PUBLIC_`.
 
 Em **Público-alvo**, a publicação **Em teste** exige cadastrar a própria conta como usuário de teste e suas autorizações expiram após sete dias. Para uso pessoal contínuo, publique **Em produção** depois de conferir as configurações. O escopo `drive.file` é classificado pelo Google como não sensível. O Google informa que apps de uso pessoal com menos de 100 usuários podem continuar sem a verificação OAuth completa, embora possam apresentar aviso de app não verificado.
 
@@ -31,13 +31,13 @@ O token Google fica apenas na memória da aba e vence; depois será preciso cone
 
 ## Publicação no GitHub Pages
 
-O editor está publicado como aplicativo estático em [pampfelp.github.io/opencut](https://pampfelp.github.io/opencut/). Qualquer pessoa pode abrir a interface, conforme autorizado pelo usuário; os projetos e vídeos de cada pessoa permanecem no armazenamento local do próprio navegador e só entram no Google Drive da conta que autorizar a sincronização. O código publicado solicita `noindex`, mas isso não restringe acesso.
+O editor é um aplicativo estático em [pampfelp.github.io/opencutpessoal/](https://pampfelp.github.io/opencutpessoal/). Qualquer pessoa pode abrir a interface, conforme autorizado pelo usuário; os projetos e vídeos de cada pessoa permanecem no armazenamento local do próprio navegador e só entram no Google Drive da conta que autorizar a sincronização. O código publicado solicita `noindex`, mas isso não restringe acesso.
 
-O aplicativo em `apps/pages` reutiliza os componentes do editor em `apps/web` e gera os arquivos estáticos com `bun run build`. Para atualizar o Pages, copie `apps/pages/out/` para a pasta `opencut/` do repositório `pampfelp.github.io`, preserve `.nojekyll` e copie `apps/web/public/` para a raiz desse repositório, pois alguns recursos usam caminhos absolutos. Depois confira a lista de projetos, a edição e uma exportação antes do push.
+O aplicativo em `apps/pages` reutiliza os componentes do editor em `apps/web`. Rode `bun run build` dentro de `apps/pages` e depois `node scripts/assemble-pages.mjs` na raiz. O resultado em `site-out/` reúne o editor, seus recursos, `.nojekyll` e as páginas públicas de `public-pages/`. Publique esse resultado na raiz da branch `gh-pages` deste mesmo repositório. Confira a lista de projetos, a edição e uma exportação no endereço público.
 
 O GitHub Pages não executa a rota de busca de sons do OpenCut. Ela já estava sem chave Freesound configurada nesta cópia; o usuário pode importar os próprios arquivos de áudio.
 
-A apresentação e as políticas aprovadas estão em [pampfelp.github.io](https://pampfelp.github.io/), no mesmo repositório público [pampfelp/pampfelp.github.io](https://github.com/pampfelp/pampfelp.github.io). Ainda falta preencher no Branding do Google Auth Platform a página inicial `https://pampfelp.github.io/`, a política `https://pampfelp.github.io/privacidade.html`, os termos `https://pampfelp.github.io/termos.html` e o domínio autorizado `pampfelp.github.io`, salvar e tentar **Publicar app**. Só usar o Google Search Console se o Google pedir a verificação de propriedade do domínio.
+A apresentação e as políticas aprovadas são publicadas no mesmo site. No Branding do Google Auth Platform, use como página inicial `https://pampfelp.github.io/opencutpessoal/sobre.html`, política `https://pampfelp.github.io/opencutpessoal/privacidade.html`, termos `https://pampfelp.github.io/opencutpessoal/termos.html` e domínio autorizado `pampfelp.github.io`. Depois salve e tente **Publicar app**. Só use o Google Search Console se o Google pedir verificação de propriedade do domínio.
 
 ## Rodar localmente
 
@@ -48,7 +48,7 @@ bun install --frozen-lockfile
 bun run dev:web
 ```
 
-Abra `http://localhost:3000`. Para acessar de outro aparelho, use `https://pampfelp.github.io/opencut/`. A origem HTTPS precisa constar no cliente OAuth para conectar o Drive.
+Abra `http://localhost:3000`. Para acessar de outro aparelho, use `https://pampfelp.github.io/opencutpessoal/`. A origem HTTPS precisa constar no cliente OAuth para conectar o Drive.
 
 ## Verificação
 

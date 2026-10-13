@@ -2,6 +2,7 @@ const assert = require('node:assert/strict');
 const fs = require('node:fs');
 const { chromium } = require('playwright-core');
 const baseUrl = process.env.PAGES_BASE_URL ?? 'http://127.0.0.1:8765';
+const appPath = process.env.PAGES_APP_PATH ?? '/opencutpessoal';
 
 (async () => {
   const browser = await chromium.launch({
@@ -16,13 +17,15 @@ const baseUrl = process.env.PAGES_BASE_URL ?? 'http://127.0.0.1:8765';
       const errors = [];
       page.on('pageerror', error => errors.push(error.message));
       page.on('response', response => {
-        if (response.status() >= 400 && response.url().includes('/opencut/_next/')) errors.push(`${response.status()} ${response.url()}`);
+        if (response.status() >= 400 && new URL(response.url()).origin === new URL(baseUrl).origin) {
+          errors.push(`${response.status()} ${response.url()}`);
+        }
       });
-      const response = await page.goto(`${baseUrl}/opencut/`, { waitUntil: 'domcontentloaded' });
+      const response = await page.goto(`${baseUrl}${appPath}/`, { waitUntil: 'domcontentloaded' });
       assert.equal(response.status(), 200);
       await page.getByRole('button', { name: 'Sincronizar com o Google Drive' }).waitFor({ timeout: 30000 });
       await page.getByRole('button', { name: 'Create your first project' }).click();
-      await page.waitForURL(url => url.pathname === '/opencut/editor/' && url.searchParams.has('project_id'), { timeout: 30000 });
+      await page.waitForURL(url => url.pathname === `${appPath}/editor/` && url.searchParams.has('project_id'), { timeout: 30000 });
       await page.getByRole('button', { name: 'Close' }).first().click();
       await page.screenshot({ path: `design/test-tools/pages-${viewport.width}.png` });
       await page.getByRole('button', { name: /Sincronizar.*Google Drive/ }).first().waitFor({ timeout: 30000 });

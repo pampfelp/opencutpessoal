@@ -12,11 +12,11 @@ await cp(source, destination, { recursive: true, force: true });
 const manifestPath = path.join(destination, "manifest.json");
 const manifest = JSON.parse(await readFile(manifestPath, "utf8"));
 manifest.name = "OpenCut Pessoal";
-manifest.id = "/opencut/";
-manifest.start_url = "/opencut/";
-manifest.scope = "/opencut/";
+manifest.id = "/opencutpessoal/";
+manifest.start_url = "/opencutpessoal/";
+manifest.scope = "/opencutpessoal/";
 manifest.icons = manifest.icons.map((icon) => ({
 	...icon,
-	src: `/opencut${icon.src}`,
+	src: `/opencutpessoal${icon.src}`,
 }));
 await writeFile(manifestPath, `${JSON.stringify(manifest, null, 2)}\n`);
