@@ -1,5 +1,7 @@
 # OpenCut Pessoal
 
+Este repositório é uma cópia histórica. O código-fonte ativo e o site publicado estão juntos em [pampfelp/pampfelp.github.io](https://github.com/pampfelp/pampfelp.github.io), nas pastas `source/` e `opencut/`. O endereço único para abrir o editor é [pampfelp.github.io](https://pampfelp.github.io/).
+
 Editor pessoal baseado no código do OpenCut Classic, sob a licença MIT mantida em `LICENSE`. O projeto abre em `/projects`; cada projeto é editado no navegador e permanece em uma cópia local (IndexedDB para a linha do tempo e OPFS para a mídia). O padrão inicial é 1080 × 1920 e pode ser alterado nas configurações do projeto.
 
 ## Estado verificado
