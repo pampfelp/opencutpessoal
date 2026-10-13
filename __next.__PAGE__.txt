@@ -1,0 +1,9 @@
+1:"$Sreact.fragment"
+2:I[13898,["/opencutpessoal/_next/static/chunks/0049c1686a89bbd6.js","/opencutpessoal/_next/static/chunks/c1a259fec1fa0c1e.js"],"ClientPageRoot"]
+3:I[65200,["/opencutpessoal/_next/static/chunks/b70102ffa51512f9.js","/opencutpessoal/_next/static/chunks/e60b34c73fe652cf.js","/opencutpessoal/_next/static/chunks/c93cea7a17fff649.js","/opencutpessoal/_next/static/chunks/664f3326b9aee672.js"],"default",1]
+6:I[19543,["/opencutpessoal/_next/static/chunks/0049c1686a89bbd6.js","/opencutpessoal/_next/static/chunks/c1a259fec1fa0c1e.js"],"OutletBoundary"]
+7:"$Sreact.suspense"
+0:{"buildId":"GAuahlzkG9XIi32IVcIcG","rsc":["$","$1","c",{"children":[["$","$L2",null,{"Component":"$3","serverProvidedParams":{"searchParams":{},"params":{},"promises":["$@4","$@5"]}}],[["$","script","script-0",{"src":"/opencutpessoal/_next/static/chunks/c93cea7a17fff649.js","async":true}],["$","script","script-1",{"src":"/opencutpessoal/_next/static/chunks/664f3326b9aee672.js","async":true}]],["$","$L6",null,{"children":["$","$7",null,{"name":"Next.MetadataOutlet","children":"$@8"}]}]]}],"loading":null,"isPartial":false}
+4:{}
+5:"$0:rsc:props:children:0:props:serverProvidedParams:params"
+8:null
